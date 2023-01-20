@@ -20,7 +20,7 @@ const birds: Bird[] = [
   },
 ];
 
-function getPlumage(bird: Bird): string | undefined {
+export function getPlumage(bird: Bird): string | undefined {
   switch (bird.type) {
     case "EuropeanSwallow":
       return "average";
@@ -35,7 +35,7 @@ function getPlumage(bird: Bird): string | undefined {
   }
 }
 
-function getVelocity(bird: Bird): number | undefined {
+export function getVelocity(bird: Bird): number | undefined {
   switch (bird.type) {
     case "EuropeanSwallow":
       return 35;
