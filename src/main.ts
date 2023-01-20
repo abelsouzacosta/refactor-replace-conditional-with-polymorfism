@@ -1,49 +1,19 @@
-type Bird = {
-  type: string;
-  numberOfCoconuts?: number;
-  voltage?: number;
-  isNailed?: boolean;
-};
+import { AfricanSwallow } from "./AfricanSwallow";
+import { Bird } from "./Bird";
+import { EuropeanSwallow } from "./EuropeanSwallow";
+import { NorwegianBlueParrot } from "./NorwegianBlueParrot";
 
-const birds: Bird[] = [
-  {
-    type: "EuropeanSwallow",
-  },
-  {
-    type: "AfricanSwallow",
-    numberOfCoconuts: 3,
-  },
-  {
-    type: "NorwegianBlueParrot",
-    voltage: 150,
-    isNailed: false,
-  },
-];
-
-export function getPlumage(bird: Bird): string | undefined {
-  switch (bird.type) {
+function createBird(type: string): Bird {
+  let bird;
+  switch (type) {
     case "EuropeanSwallow":
-      return "average";
+      bird = new EuropeanSwallow();
     case "AfricanSwallow":
-      return bird.numberOfCoconuts && bird.numberOfCoconuts > 2
-        ? "tired"
-        : "average";
+      bird = new AfricanSwallow();
     case "NorwegianBlueParrot":
-      return bird.voltage && bird.voltage > 100 ? "scorched" : "beautiful";
+      bird = new NorwegianBlueParrot();
     default:
-      null;
+      bird = new Bird();
   }
-}
-
-export function getVelocity(bird: Bird): number | undefined {
-  switch (bird.type) {
-    case "EuropeanSwallow":
-      return 35;
-    case "AfricanSwallow":
-      return bird.numberOfCoconuts ? 40 - 2 * bird.numberOfCoconuts : 0;
-    case "NorwegianBlueParrot":
-      return bird.isNailed ? 0 : bird.voltage ? 10 + bird.voltage / 10 : 0;
-    default:
-      null;
-  }
+  return bird;
 }
